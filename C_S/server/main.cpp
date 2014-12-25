@@ -9,12 +9,12 @@ int main(int argc, char* argv[])
 	serverClass server(4444);
 	while (true)
 	{
-		bool flag = server.acceptClient();
+		bool flag = server.sRecv();
 		if (flag)
 		{
-			std::cout << "connected!" << std::endl;
-			server.sSend("hello client");
-			server.closeSocket();
+			char c[100];
+			sprintf_s(c, "hello size: %d", server.size());
+			server.sSend(c);
 		}
 	}
 	return 0;

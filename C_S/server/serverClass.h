@@ -1,22 +1,23 @@
 #pragma once
 #include "winsock2.h"
 #include "InitSock.h"
+#include "map"
+#include "vector"
+#include "process.h"
 #pragma comment(lib,"WS2_32")
 class serverClass
 {
 public:
 	serverClass(int port) ;
 	~serverClass();
-	bool acceptClient();
 	bool sSend(const char* str);
 	bool sRecv();
 	void closeSocket();
+	int size();
 private:
 	InitSock _initSock;
 	SOCKET _sListen;
-	SOCKET _sClient;
-	sockaddr_in _r_sin;
+	std::vector<sockaddr_in*> _addrs;
 	sockaddr_in _sin;
-	bool _has_connect;
 };
 
