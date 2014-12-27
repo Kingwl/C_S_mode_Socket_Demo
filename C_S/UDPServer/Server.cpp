@@ -104,6 +104,7 @@ void Server::MsgLoop(void* serv_ptr)
 	{
 		while (s_ptr->_msgQue.empty() == false)
 		{
+			std::cout << "connected !" << std::endl;
 			s_ptr->_addrs.push_back(std::make_pair(s_ptr->_msgQue.front().first, true));
 			std::cout << s_ptr->_msgQue.front().second << std::endl;;
 			s_ptr->_msgQue.pop();
@@ -144,7 +145,7 @@ void Server::EnterMainLoop()
 	std::string in;
 	while (true)
 	{
-		std::cin >> in;
+		std::getline(std::cin, in);
 		addSend(in);
 	}
 }
